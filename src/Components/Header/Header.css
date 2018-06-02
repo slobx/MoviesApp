@@ -1,0 +1,35 @@
+#header_logo {
+    height: auto;
+    width: 4%;
+    position: absolute;
+    left: 48px;
+}
+
+#header_container {
+    position: relative;
+}
+
+Nav {
+    height: 70px;
+    position: absolute;
+}
+
+.NavItem {
+    top: 10px;
+    font-size: 1.4em;
+    font-family: Calibri;
+}
+
+MenuItem {
+    font-size: 1.9em;
+    font-family: Calibri;
+}
+
+.navbar_search {
+    margin-top: 10px;
+}
+
+#navbar_search_box {
+    margin-right: 50px;
+    width: 300px;
+}
