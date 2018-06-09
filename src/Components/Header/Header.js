@@ -3,7 +3,7 @@ import './Header.css';
 
 import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Form} from 'react-bootstrap';
 
-const header_logo = require('../../Assets/header_logo.png');
+const header_logo = require('../../assets/header_logo.png');
 
 
 class Header extends Component {
@@ -13,7 +13,22 @@ class Header extends Component {
         this.state = {
             isMoviesByYearOpen: false,
             isMoviesByGenreOpen: false,
+            genresObj: {
+                genres:[]
+            }
         }
+    }
+
+    componentDidMount() {
+        const url = "https://api.themoviedb.org/3/genre/movie/list?api_key=c6954690aae063d1bff3604d7db3741d&language=en-US";
+
+        fetch(url).then(response => {
+            return response.json()
+        }).then(genres => {
+            this.setState({genresObj: genres});
+            console.log(genres);
+        });
+
     }
 
     handleMoviesByYearOpen = () => {
@@ -29,9 +44,9 @@ class Header extends Component {
         this.setState({isMoviesByGenreOpen: false})
     };
 
-    onNavFormSubmit = (event) =>{
+    onNavFormSubmit = (event) => {
         event.preventDefault();
-      alert("Test");
+        //TODO implement search option
     };
 
 
@@ -40,24 +55,24 @@ class Header extends Component {
             <div id="header_container">
                 <Navbar inverse collapseOnSelect>
                     <Navbar.Header>
-                        <img id="header_logo" src={header_logo}/>
+                        <img id="header_logo" alt="MoviesApp" src={header_logo}/>
                     </Navbar.Header>
                     <Nav>
                         <NavItem className="NavItem" eventKey={1} href="#">
-                            Top rated movies
+                            Movies
                         </NavItem>
-                        <NavDropdown className="NavItem"
+                        <NavDropdown id="sample" className="NavItem"
                                      eventKey={2}
                                      title="Movies by genre"
                                      onMouseEnter={this.handleMoviesByGenreOpen}
                                      onMouseLeave={this.handleMoviesByGenreClose}
                                      open={this.state.isMoviesByGenreOpen}>
-                            <MenuItem eventKey={3.1}>Action</MenuItem>
-                            <MenuItem eventKey={3.2}>Comedy</MenuItem>
-                            <MenuItem eventKey={3.3}>Thriller</MenuItem>
-                            <MenuItem eventKey={3.3}>Horror</MenuItem>
-                            <MenuItem divider/>
-                            <MenuItem eventKey={3.4}>More...</MenuItem>
+
+                            {this.state.genresObj.genres.map((genre,id )=> {
+                                return(
+                                    <MenuItem eventKey={id}>{genre.name}</MenuItem>
+                                )
+                            })}
                         </NavDropdown>
                         <NavDropdown className="NavItem"
                                      eventKey={3}

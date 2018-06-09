@@ -1,0 +1,168 @@
+.card-text {
+    font-size: .85em;
+    position: relative;
+    top: 80%;
+    font-family: Calibri;
+}
+
+.card-title {
+    font-size: 1.7em;
+    font-weight: bold;
+    font-family: Calibri;
+}
+
+.container .text-muted {
+    text-align: start;
+}
+
+.card_img {
+    width: 95%;
+    height: 75%;
+    max-width: 100%;
+    position: absolute;
+}
+
+.selection_row {
+    flex-flow: wrap;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    width: 50%;
+}
+
+.selection_item {
+    border-radius: 5px;
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+.selected {
+    opacity: 0.5;
+}
+
+.card-flex {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -moz-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -o-flex-wrap: wrap;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 75%;
+    flex-basis: 75%;
+}
+
+.card-flex-item {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    width: 100%;
+}
+
+.card-flex-wrapper {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+
+    background-color: lightgrey;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    margin-right: 400px;
+    padding: .5em;
+}
+
+.card-flex-image img {
+    opacity: 1;
+}
+
+.custom-overlay {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.custom-modal {
+    background: lightgrey;
+    max-width: 1000px;
+    width: 100%;
+    height: auto;
+}
+
+.modal_wrapper {
+    display: flex;
+}
+
+.modal_left_side {
+    flex: 50%;
+}
+
+.modal_right_side {
+    flex: 50%;
+    margin: 7px;
+}
+.modal_title{
+    text-align: center;
+}
+
+.modal_genre_wrapper{
+    display: flex;
+    flex-direction: row;
+    display: -webkit-flex;
+    display: -ms-flex;
+    justify-content: space-between;
+}
+
+.modal_genre{
+    flex: 1;
+    text-align: center;
+    font-size: 0.7em;
+    font-weight: bold;
+}
+
+.modal_overview{
+    margin: 10px;
+}
+
+/* Custom page CSS - iPad/Desktop  */
+
+@media (min-width: 768px) {
+    .container .text-muted {
+        text-align: end;
+    }
+
+    .card-flex-item {
+        width: 33.33%;
+        padding-right: 1em;
+    }
+
+    .card-flex-item:nth-child(3n) {
+        padding-right: 0;
+    }
+
+    .card-flex-image img {
+        opacity: 0.8;
+    }
+
+    .card-flex-wrapper:hover {
+        cursor: pointer;
+        background-color: white;
+        box-shadow: rgba(0, 0, 0, 0.45) 0px 0px 20px 0px;
+    }
+
+    .card-flex-wrapper:hover .card-flex-image img {
+        opacity: 1;
+        transition: opacity 0.5s cubic-bezier(.43, .41, .22, .91);
+    }
+
+    .card-flex-wrapper:hover .card-flex-button {
+        background-color: lightgrey;
+    }
+}
