@@ -20,9 +20,11 @@ class MainPage extends Component {
             selected_movie: {
                 genres: []
             },
+            credits: {
+                cast: []
+            }
         }
     }
-
 
     componentDidMount() {
         fetch('https://api.themoviedb.org/3/movie/popular?api_key=c6954690aae063d1bff3604d7db3741d&language=en-US&page=1')
@@ -31,7 +33,6 @@ class MainPage extends Component {
             })
             .then(movies => {
                 this.setState({movies: movies});
-                console.log(this.state.movies);
             });
     }
 
@@ -43,8 +44,10 @@ class MainPage extends Component {
         this.setState({open: true});
         this.setState({show: true, id: item.id});
         let url = 'https://api.themoviedb.org/3/movie/';
+        let credits_url = 'https://api.themoviedb.org/3/movie/';
         url += item.id;
         url += '?api_key=c6954690aae063d1bff3604d7db3741d&language=en-US';
+
         fetch(url)
             .then(response => {
                 return response.json()
@@ -52,8 +55,20 @@ class MainPage extends Component {
             .then(selected_movie => {
                 this.setState({selected_movie: selected_movie});
                 console.log(this.state.selected_movie);
-            });
+            }).then(() => {
+                credits_url += this.state.selected_movie.id;
+                credits_url += '/credits?api_key=c6954690aae063d1bff3604d7db3741d';
 
+                fetch(credits_url)
+                    .then(response => {
+                        return response.json()
+                    })
+                    .then(credits => {
+                        this.setState({credits: credits});
+                        console.log(this.state.credits);
+                    });
+            }
+        );
     };
 
 
@@ -91,6 +106,24 @@ class MainPage extends Component {
                             })
                             }
                             <div className="modal_overview">{selected_movie.overview}</div>
+                            <div>CAST</div>
+                            <Grid className="actor_grid">
+                                {this.state.credits.cast.slice(0, 5).map(actor => {
+                                    return (
+                                        <Row className="actor_wrapper">
+                                            <Col>
+                                                <img className="actor_img" src={image_url + actor.profile_path}
+                                                     alt={actor.name}/>
+                                                <div className="flex-center-vertically">
+                                                    <div className="actor_name">{actor.name}</div>
+                                                    <div className="actor_character">{actor.character}</div>
+                                                </div>
+                                            </Col>
+                                        </Row>
+                                    )
+                                })}
+                            </Grid>
+
                         </div>
 
                     </div>

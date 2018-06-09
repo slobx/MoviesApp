@@ -26,7 +26,6 @@ class Header extends Component {
             return response.json()
         }).then(genres => {
             this.setState({genresObj: genres});
-            console.log(genres);
         });
 
     }
